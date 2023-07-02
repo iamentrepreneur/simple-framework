@@ -2,15 +2,30 @@
 
 namespace App\Application;
 
+use App\Application\Config\Config;
 use App\Application\Router\Route;
 use App\Application\Router\Router;
+use App\Application\Views\View;
+use App\Exceptions\ViewNotFoundException;
 
 class App
 {
     public function run(): void
     {
-        require_once __DIR__ . "/../../routes/pages.php";
+        try {
+            $this->handle();
+        } catch (ViewNotFoundException $e) {
+            View::exception($e);
+        }
+    }
 
+    /**
+     * @throws ViewNotFoundException
+     */
+    private function handle(): void
+    {
+        Config::init();
+        require_once __DIR__ . "/../../routes/pages.php";
         $router = new Router();
         $router->handle(Route::list());
     }
