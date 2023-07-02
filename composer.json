@@ -1,0 +1,17 @@
+{
+    "name": "entrepreneur/framework.artofall.ru",
+    "description": "Simple PHP framework",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ilya Volkov"
+        }
+    ],
+    "require-dev": {
+        "larapack/dd": "^1.1"
+    }
+}
