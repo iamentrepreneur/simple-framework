@@ -6,6 +6,7 @@ use App\Application\Config\Config;
 use App\Application\Router\Route;
 use App\Application\Router\Router;
 use App\Application\Views\View;
+use App\Exceptions\ComponentNotFoundException;
 use App\Exceptions\ViewNotFoundException;
 
 class App
@@ -14,7 +15,7 @@ class App
     {
         try {
             $this->handle();
-        } catch (ViewNotFoundException $e) {
+        } catch (ViewNotFoundException|ComponentNotFoundException $e) {
             View::exception($e);
         }
     }
@@ -25,6 +26,7 @@ class App
     private function handle(): void
     {
         Config::init();
+        require_once __DIR__ . "/../../routes/actions.php";
         require_once __DIR__ . "/../../routes/pages.php";
         $router = new Router();
         $router->handle(Route::list());

@@ -7,24 +7,27 @@ use App\Exceptions\ViewNotFoundException;
 
 class Router implements RouterInterface
 {
+    use RouterHelper;
     /**
      * @throws ViewNotFoundException
      */
     public function handle(array $routes): void
     {
-        $uri = $_SERVER['REQUEST_URI'];
+        $requestMethod = $_SERVER['REQUEST_METHOD'];
 
+        $uri = $_SERVER['REQUEST_URI'];
         $only_routes = [];
         foreach ($routes as $ru) {
             $only_routes[] = $ru['uri'];
         }
 
-        if (array_search($uri, $only_routes)) {
-            foreach ($routes as $route) {
+        $type = $requestMethod == 'POST' ? 'post' : 'page';
+        $filteredRoutes = self::filter($routes, $type);
+
+        if (in_array($uri, $only_routes)) {
+            foreach ($filteredRoutes as $route) {
                 if($route['uri'] == $uri) {
-                    $controller = new $route['controller']();
-                    $method = $route['method'];
-                    $controller->$method();
+                    self::controller($route);
                 }
             }
         } else {

@@ -1,18 +1,23 @@
+<?php
+
+use App\Application\Config\Config;
+use App\Application\Views\View;
+?>
 <!doctype html>
-<html lang="en">
+<html lang="<?= Config::get('app.lang')?>">
 <head>
-    <?php include_once __DIR__ . '/../components/head.php'?>
-    <title>Home page</title>
+    <?php View::component('head'); ?>
+    <title><?=$title?></title>
 </head>
 <body>
-<?php include_once __DIR__ . '/../components/nav.php'?>
-    <main>
-        <div class="container">
-            <div class="row mt-3">
-                <h2>Welcome to <span class="badge bg-secondary">home page</span></h2>
-            </div>
+<?php View::component('nav'); ?>
+<main>
+    <div class="container">
+        <div class="row mt-3">
+            <h2>Welcome to <span class="badge bg-secondary">home page</span></h2>
         </div>
-    </main>
+    </div>
+</main>
 
 </body>
 </html>

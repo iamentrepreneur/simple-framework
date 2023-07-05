@@ -1,11 +1,16 @@
+<?php
+
+use App\Application\Config\Config;
+use App\Application\Views\View;
+?>
 <!doctype html>
-<html lang="en">
+<html lang="<?= Config::get('app.lang')?>">
 <head>
-    <?php include_once __DIR__ . '/../components/head.php'?>
-    <title>About page</title>
+    <?php View::component('head'); ?>
+    <title><?=$title?></title>
 </head>
 <body>
-<?php include_once __DIR__ . '/../components/nav.php'?>
+<?php View::component('nav'); ?>
     <main>
         <div class="container">
             <div class="row mt-3">

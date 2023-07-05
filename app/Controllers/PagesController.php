@@ -12,7 +12,9 @@ class PagesController
      */
     public function home(): void
     {
-        View::show('pages/home');
+        View::show('pages/home', [
+            'title' => 'Home'
+        ]);
     }
 
     /**
@@ -20,7 +22,9 @@ class PagesController
      */
     public function about(): void
     {
-        View::show('pages/about');
+        View::show('pages/about', [
+            'title' => 'About'
+        ]);
     }
 
     /**
@@ -28,14 +32,8 @@ class PagesController
      */
     public function contacts(): void
     {
-        View::show('pages/contacts');
-    }
-
-    /**
-     * @throws ViewNotFoundException
-     */
-    public function default(): void
-    {
-        View::show('pages/default');
+        View::show('pages/contacts', [
+            'title' => 'Contacts'
+        ]);
     }
 }
