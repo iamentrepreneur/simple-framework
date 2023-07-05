@@ -8,9 +8,6 @@ use App\Exceptions\ViewNotFoundException;
 class Router implements RouterInterface
 {
     use RouterHelper;
-    /**
-     * @throws ViewNotFoundException
-     */
     public function handle(array $routes): void
     {
         $requestMethod = $_SERVER['REQUEST_METHOD'];
@@ -28,10 +25,12 @@ class Router implements RouterInterface
             foreach ($filteredRoutes as $route) {
                 if($route['uri'] == $uri) {
                     self::controller($route);
+                    return;
                 }
             }
         } else {
-            View::show("pages" . $uri);
+//            View::show("pages" . $uri);
+            View::error(404);
         }
     }
 }

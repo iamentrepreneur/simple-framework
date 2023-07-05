@@ -2,6 +2,8 @@
 
 namespace App\Application\Router;
 
+use App\Application\Request\Request;
+
 trait RouterHelper
 {
         protected static function filter(array $routes, string $type = 'page'): array
@@ -15,10 +17,13 @@ trait RouterHelper
         {
             $controller = new $route['controller']();
             $method = $route['method'];
-            if (!empty($_POST)) {
-                $controller->$method($_POST);
-            } else {
-                $controller->$method();
-            }
+
+            $request = new Request($_POST, $_GET, $_FILES);
+            $controller->$method($request);
+//            if (!empty($_POST)) {
+//                $controller->$method($_POST);
+//            } else {
+//                $controller->$method();
+//            }
         }
 }

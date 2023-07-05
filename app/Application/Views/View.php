@@ -51,10 +51,16 @@ class View implements ViewInterface
      */
     public static function component(string $component): void
     {
-        $path = __DIR__ . "/../../../views//components/$component.component.php";
+        $path = __DIR__ . "/../../../views/components/$component.component.php";
         if (!file_exists($path)) {
             throw new ComponentNotFoundException("Component ($component) not found");
         }
+        include $path;
+    }
+
+    public static function error(int $code): void
+    {
+        $path = __DIR__ . "/../../../views/app/errors/$code.view.php";
         include $path;
     }
 }

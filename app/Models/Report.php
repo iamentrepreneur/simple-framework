@@ -2,17 +2,16 @@
 
 namespace App\Models;
 
-use App\Application\Database\Connection;
+use App\Application\Database\Model;
 
-class Report extends Connection
+class Report extends Model
 {
-    protected int $id;
+    protected string $table = 'reports';
+    protected array $fields = ['email', 'subject', 'message'];
     protected string $email;
     protected string $subject;
 
     protected string $message;
-    protected string $created_at;
-    protected string $updated_at;
 
     /**
      * @return string
@@ -62,15 +61,5 @@ class Report extends Connection
         $this->message = $message;
     }
 
-    public function store(): void
-    {
-        $query = "INSERT INTO framework.reports (email, subject, message) VALUES (:email, :subject, :message)";
-        $stmt = $this->connect()->prepare($query);
-        $stmt->execute([
-            'email' => $this->email,
-            'subject' => $this->subject,
-            'message' => $this->message
-        ]);
 
-    }
 }

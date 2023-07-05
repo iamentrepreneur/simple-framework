@@ -15,7 +15,7 @@ class App
     {
         try {
             $this->handle();
-        } catch (ViewNotFoundException|ComponentNotFoundException $e) {
+        } catch (ViewNotFoundException|ComponentNotFoundException|\PDOException $e) {
             View::exception($e);
         }
     }
