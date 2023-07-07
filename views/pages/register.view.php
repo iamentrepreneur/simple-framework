@@ -19,7 +19,7 @@ use App\Application\Views\View;
 
             <div class="row">
                 <div class="col-6">
-                    <form class="mb-5" action="/register" method="post">
+                    <form class="mt-5" action="/register" method="post">
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" id="email" name="name" >
