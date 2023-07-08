@@ -24,6 +24,10 @@ class Router implements RouterInterface
         if (in_array($uri, $only_routes)) {
             foreach ($filteredRoutes as $route) {
                 if($route['uri'] == $uri) {
+                    if (!empty($route['middleware'])) {
+                        $middleware = new $route['middleware']();
+                        $middleware->handle();
+                    }
                     self::controller($route);
                     return;
                 }

@@ -16,6 +16,7 @@ class User extends Model
     protected array $fields = [
         'name',
         'lastname',
+        'token',
         'email',
         'userPassword'
     ];

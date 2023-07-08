@@ -3,6 +3,8 @@
 use App\Application\Config\Config;
 use App\Application\Views\View;
 
+//dd(\App\Application\Auth\Auth::user());
+
 ?>
 <!doctype html>
 <html lang="<?= Config::get('app.lang') ?>">
